@@ -17,10 +17,14 @@ export default class Content extends Component {
   }
 
   componentDidMount() {
+    this.setState({
+      selected: selected
+    })
     // Once the component has mounted, get the data and reflect that data on the state.
   }
 
   changeSelected = tab => {
+    this.setState({ selected: tab });
     // this function should take in the tab and update the state with the new tab.
   };
 
@@ -37,7 +41,14 @@ export default class Content extends Component {
           of the items from cardData. 
         - else, it should only return those cards whose 'tab' matched this.state.selected.
     */
-    return this.state.cards;
+      const filterCards = this.state.cards.filter(
+        item => item.tabs === this.state.selected
+      );
+      if (this.state.selected) === 'all') {
+
+        return this.state.cards;
+      }
+      return filterCards;
   };
 
   render() {
@@ -48,7 +59,10 @@ export default class Content extends Component {
           `selectedTab` that includes the currently selected tab
           and `selectTabHandler` that includes the function to change the selected tab
         */}
-        <Tabs tabs={this.state.tabs} />
+        <Tabs
+        selectedTab={this.state.selected}
+        selectedTabHandler={this.changeSelected}
+        tabs={this.state.tabs} />
         <Cards cards={this.filterCards()} />
       </div>
     );
