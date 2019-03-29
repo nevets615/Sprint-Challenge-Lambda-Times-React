@@ -67,7 +67,7 @@ export default class Content extends Component {
           tabs={this.state.tabs}
           selectedTab={this.state.selected}
           selectedTabHandler={this.changeSelected}
-          tabs={this.state.tabs}
+         
         />
         <Cards cards={this.filterCards()} />
       </div>
